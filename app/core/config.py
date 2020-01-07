@@ -7,7 +7,7 @@ from loguru import logger
 from starlette.config import Config
 from starlette.datastructures import CommaSeparatedStrings, Secret
 
-from core.logging import InterceptHandler
+from app.core.logging import InterceptHandler
 
 API_PREFIX = '/api'
 
@@ -19,8 +19,8 @@ config = Config('.env')
 DEBUG: bool = config('DEBUG', cast=bool, default=False)
 
 DATABASE_URL: DatabaseURL = config('DB_CONNECTION', cast=DatabaseURL)
-MAX_CONNECTION_COUNT: int = config('MAX_CONNECTION_COUNT', cast=int, default=10)
-MIN_CONNECTION_COUNT: int = config('MIN_CONNECTION_COUNT', cast=int, default=10)
+MAX_CONNECTIONS_COUNT: int = config('MAX_CONNECTIONS_COUNT', cast=int, default=10)
+MIN_CONNECTIONS_COUNT: int = config('MIN_CONNECTIONS_COUNT', cast=int, default=10)
 
 SECRET_KEY: Secret = config('SECRET_KEY', cast=Secret)
 
