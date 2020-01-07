@@ -1,6 +1,7 @@
 import logging
 import sys
 from typing import List
+import os
 
 from databases import DatabaseURL
 from loguru import logger
@@ -18,7 +19,7 @@ config = Config('.env')
 
 DEBUG: bool = config('DEBUG', cast=bool, default=False)
 
-DATABASE_URL: DatabaseURL = config('DB_CONNECTION', cast=DatabaseURL)
+DATABASE_URL: DatabaseURL = config('DB_CONNECTION', cast=DatabaseURL, default=os.environ.get('DB_CONNECTION'))
 MAX_CONNECTIONS_COUNT: int = config('MAX_CONNECTIONS_COUNT', cast=int, default=10)
 MIN_CONNECTIONS_COUNT: int = config('MIN_CONNECTIONS_COUNT', cast=int, default=10)
 
