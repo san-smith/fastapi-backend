@@ -23,7 +23,7 @@ DATABASE_URL: DatabaseURL = config('DB_CONNECTION', cast=DatabaseURL, default=os
 MAX_CONNECTIONS_COUNT: int = config('MAX_CONNECTIONS_COUNT', cast=int, default=10)
 MIN_CONNECTIONS_COUNT: int = config('MIN_CONNECTIONS_COUNT', cast=int, default=10)
 
-SECRET_KEY: Secret = config('SECRET_KEY', cast=Secret)
+SECRET_KEY: Secret = config('SECRET_KEY', cast=Secret, default=os.environ.get('SECRET_KEY'))
 
 PROJECT_NAME: str = config('PROJECT_NAME', cast=str, default='FastAPI example')
 ALLOWED_HOSTS: List[str] = config('ALLOWED_HOSTS', cast=CommaSeparatedStrings, default='')
