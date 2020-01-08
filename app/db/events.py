@@ -8,22 +8,15 @@ from time import sleep
 
 async def connect_to_db(app: FastAPI) -> None:
     logger.info("Connecting to {0}", repr(DATABASE_URL))
-    count = 0
 
-    while count < 2:
-        try:
-            logger.info("try connecting... {0}", count)
-            app.state.pool = await asyncpg.create_pool(
-                str(DATABASE_URL),
-                min_size=MIN_CONNECTIONS_COUNT,
-                max_size=MAX_CONNECTIONS_COUNT,
-            )
+    app.state.pool = await asyncpg.create_pool(
+        str(DATABASE_URL),
+        min_size=MIN_CONNECTIONS_COUNT,
+        max_size=MAX_CONNECTIONS_COUNT,
+    )
 
-            logger.info("Connection established")
-            break
-        except:
-            count += 1
-            sleep(2)
+    logger.info("Connection established")
+
 
 
 
